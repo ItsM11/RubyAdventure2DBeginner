@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
    public float speed;
    public bool vertical;
    public float changeTime = 3.0f;
+   public AudioSource fixedAudio;
+   public ParticleSystem smokeEffect;
   
    // Private variables
    Rigidbody2D rigidbody2d;
@@ -23,7 +25,7 @@ public class EnemyController : MonoBehaviour
        rigidbody2d = GetComponent<Rigidbody2D>();
        animator = GetComponent<Animator>();
        timer = changeTime;
-      
+       fixedAudio = GetComponent<AudioSource>();
    }
 
 
@@ -93,6 +95,8 @@ public class EnemyController : MonoBehaviour
        broken = false;
        GetComponent<Rigidbody2D>().simulated = false;
        animator.SetTrigger("Fixed");
+       fixedAudio.Stop();
+       smokeEffect.Stop();
    }
 
 
